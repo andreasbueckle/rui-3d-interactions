@@ -27,9 +27,6 @@ public class UserInputModule : MonoBehaviour
     private Toggle[] m_TogglesPosition = new Toggle[4];
 
     [SerializeField]
-    private Toggle[] m_TogglesRendering = new Toggle[2];
-
-    [SerializeField]
     private Toggle[] m_TogglesCameras = new Toggle[2];
 
     [SerializeField]
@@ -50,24 +47,6 @@ public class UserInputModule : MonoBehaviour
             );
         }
 
-        foreach (var button in m_TogglesRendering)
-        {
-            button.onValueChanged.AddListener(
-                delegate
-                {
-                    NewRendering renderAs;
-                    if (button.gameObject.name.Equals("Orthographic"))
-                    {
-                        renderAs = NewRendering.Orthographic;
-                    }
-                    else
-                    {
-                        renderAs = NewRendering.Perspective;
-                    }
-                    PerspectiveChangeEvent?.Invoke(renderAs);
-                }
-            );
-        }
 
         foreach (var button in m_TogglesCameras)
         {
@@ -96,7 +75,7 @@ public class UserInputModule : MonoBehaviour
         );
     }
 
-   
+
     void OnGUI()
     {
         TakeUserInput();
